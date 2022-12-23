@@ -29,12 +29,12 @@ public class MainMenu : MonoBehaviour
         float temp = 875 + (0.75f - GameManager.aspectRatio) * 1700f;
         title.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, temp);
 
-        temp = 650 + (0.75f - GameManager.aspectRatio) * 1400f;
+        temp = 650 + (0.75f - GameManager.aspectRatio) * 1200f;
         buttons.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, temp);
         
-        float temp1 = 3 + (0.75f - GameManager.aspectRatio) * 2.5f;
+        float temp1 = 3 + (0.75f - GameManager.aspectRatio) * 2f;
         float temp2 = 130 + (0.75f - GameManager.aspectRatio) * 100f;
-        float temp3 = 300 + (0.75f - GameManager.aspectRatio) * 180f;
+        float temp3 = 300 + (0.75f - GameManager.aspectRatio) * 150f;
         foreach (GameObject button in buttonList1)
         {
             button.GetComponent<RectTransform>().localScale = new Vector3(temp1, temp1);
