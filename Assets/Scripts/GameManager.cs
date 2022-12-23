@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     public static int deckNumber = 0;
 
+    public static int lastMenuPage = 0;
+
     private void Start()
     {
         DontDestroyOnLoad(this);

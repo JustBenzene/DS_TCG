@@ -7,22 +7,24 @@ using TMPro;
 
 public class DeckEditor : MonoBehaviour
 {
-    [SerializeField] GameObject number;
-    [SerializeField] GameObject saveFile;
+    [SerializeField] GameObject numberOnScreen;
+    [SerializeField] int number;
 
     private void Start()
     {
-        number.GetComponent<TextMeshProUGUI>().SetText(GameManager.deckNumber.ToString());
+        number = GameManager.deckNumber;
+        numberOnScreen.GetComponent<TextMeshProUGUI>().SetText(number.ToString());
     }
 
-    public void OnClickBack()
+    public void OnClickDontSafe()
     {
-        SceneManager.UnloadSceneAsync("DeckEditor");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OnClickSave()
     {
-        PlayerPrefs.SetString("Deck" + saveFile.GetComponent<Slider>().value.ToString() + "Empty", "False");
+        PlayerPrefs.SetString("Deck" + number.ToString() + "Empty", "False");
         PlayerPrefs.Save();
+        SceneManager.LoadScene("MainMenu");
     }
 }

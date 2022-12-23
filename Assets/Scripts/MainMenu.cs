@@ -8,15 +8,15 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject mainMenuButtons;
     [SerializeField] GameObject deckEditorButtons;
-    [SerializeField] GameObject chooseDeckButtons;
 
     [SerializeField] GameObject buttons;
     [SerializeField] GameObject title;
 
-    [SerializeField] GameObject deck1;
-    [SerializeField] GameObject deck2;
-    [SerializeField] GameObject deck3;
-    [SerializeField] GameObject editDeck;
+    [SerializeField] GameObject deleteDeck1;
+    [SerializeField] GameObject deleteDeck2;
+    [SerializeField] GameObject deleteDeck3;
+
+    [SerializeField] GameObject areYouSure;
 
     private void Start()
     {
@@ -25,130 +25,116 @@ public class MainMenu : MonoBehaviour
 
         temp = 650 + (0.75f - (float)GameManager.aspectRatio) * 1400f;
         buttons.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, temp);
+
+
+
+        if (GameManager.lastMenuPage == 1)
+        {
+            SetUpDeckEditor();
+        }
     }
 
     public void OnClickNewGame()
     {
-        Debug.Log("Clicked on New Game");
+        
     }
 
     public void OnClickLoadGame()
     {
-        Debug.Log("Clicked on Load Game");
-    }
-
-    public void OnClickDecks()
-    {
-        Debug.Log("Clicked on Decks");
-
-        mainMenuButtons.gameObject.SetActive(false);
-
-        if ((PlayerPrefs.GetString("Deck1Empty") == "False") || (PlayerPrefs.GetString("Deck2Empty") == "False") || (PlayerPrefs.GetString("Deck3Empty") == "False"))
-        {
-            editDeck.GetComponent<Button>().interactable = true;
-        }
-        else
-        {
-            editDeck.GetComponent<Button>().interactable = false;
-        }
-
-        deckEditorButtons.gameObject.SetActive(true);
+        
     }
 
     public void OnClickOptions()
     {
-        Debug.Log("Clicked on Options");
+        
     }
 
-    public void OnClickNewDeck()
+    public void OnClickDeckEditor()
     {
-        Debug.Log("Clicked on New Deck");
-
-        GameManager.deckNumber = 0;
-        SceneManager.LoadScene("DeckEditor", LoadSceneMode.Additive);
-    }
-
-    public void OnClickEditDeck()
-    {
-        Debug.Log("Clicked on Edit Deck");
-
-        deckEditorButtons.gameObject.SetActive(false);
-
-        if (PlayerPrefs.GetString("Deck1Empty") == "False")
-        {
-            deck1.GetComponent<Button>().interactable = true;
-        }
-        else
-        {
-            deck1.GetComponent<Button>().interactable = false;
-        }
-        if (PlayerPrefs.GetString("Deck2Empty") == "False")
-        {
-            deck2.GetComponent<Button>().interactable = true;
-        }
-        else
-        {
-            deck2.GetComponent<Button>().interactable = false;
-        }
-        if (PlayerPrefs.GetString("Deck3Empty") == "False")
-        {
-            deck3.GetComponent<Button>().interactable = true;
-        }
-        else
-        {
-            deck2.GetComponent<Button>().interactable = false;
-        }
-
-        chooseDeckButtons.gameObject.SetActive(true);
+        SetUpDeckEditor();
     }
 
     public void OnClickBack()
     {
-        Debug.Log("Clicked on Back");
-
-        deckEditorButtons.gameObject.SetActive(false);
-        mainMenuButtons.gameObject.SetActive(true);
+        deckEditorButtons.SetActive(false);
+        mainMenuButtons.SetActive(true);
     }
 
     public void OnClickDeck1()
     {
-        Debug.Log("Clicked on Deck 1");
-
-        GameManager.deckNumber = 1;
-        SceneManager.LoadScene("DeckEditor", LoadSceneMode.Additive);
+        OpenDeck(1);
     }
 
     public void OnClickDeck2()
     {
-        Debug.Log("Clicked on Deck 2");
-
-        GameManager.deckNumber = 2;
-        SceneManager.LoadScene("DeckEditor", LoadSceneMode.Additive);
+        OpenDeck(2);
     }
 
     public void OnClickDeck3()
     {
-        Debug.Log("Clicked on Deck 3");
-
-        GameManager.deckNumber = 3;
-        SceneManager.LoadScene("DeckEditor", LoadSceneMode.Additive);
+        OpenDeck(3);
     }
 
-    public void OnClickBack2()
+    public void OnClickDelete1()
     {
-        Debug.Log("Clicked on Back");
+        DeleteDeck(1);
+    }
 
-        chooseDeckButtons.gameObject.SetActive(false);
+    public void OnClickDelete2()
+    {
+        DeleteDeck(2);
+    }
 
-        if ((PlayerPrefs.GetString("Deck1Empty") == "False") || (PlayerPrefs.GetString("Deck2Empty") == "False") || (PlayerPrefs.GetString("Deck3Empty") == "False"))
+    public void OnClickDelete3()
+    {
+        DeleteDeck(3);
+    }
+
+    public void OnClickYes()
+    {
+        PlayerPrefs.SetString("Deck" + GameManager.deckNumber.ToString() + "Empty", "True");
+
+        SetUpDeckEditor();
+
+        areYouSure.SetActive(false);
+    }
+
+    public void OnClickNo()
+    {
+        areYouSure.SetActive(false);
+    }
+
+    public void SetUpDeckEditor()
+    {
+        mainMenuButtons.SetActive(false);
+
+        GameObject[] list = new GameObject[] { deleteDeck1, deleteDeck2, deleteDeck3 };
+        for (int temp = 0; temp <= 2; temp++)
         {
-            editDeck.GetComponent<Button>().interactable = true;
-        }
-        else
-        {
-            editDeck.GetComponent<Button>().interactable = false;
+            if (PlayerPrefs.GetString("Deck" + (temp + 1).ToString() + "Empty") == "False")
+            {
+                list[temp].GetComponent<Button>().interactable = true;
+            }
+            else
+            {
+                list[temp].GetComponent<Button>().interactable = false;
+            }
         }
 
-        deckEditorButtons.gameObject.SetActive(true);
+        deckEditorButtons.SetActive(true);
+    }
+
+    public void DeleteDeck(int number)
+    {
+        GameManager.deckNumber = number;
+
+        areYouSure.SetActive(true);
+    }
+
+    public void OpenDeck(int number)
+    {
+        GameManager.deckNumber = number;
+        GameManager.lastMenuPage = 1;
+        SceneManager.LoadScene("DeckEditor");
     }
 }
