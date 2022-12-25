@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static float aspectRatio = (float)Screen.width / (float)Screen.height;
+    public static float aspectRatio = (float)Screen.height / (float)Screen.width;
 
     public static int deckNumber = 0;
 

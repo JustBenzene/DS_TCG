@@ -9,59 +9,31 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject mainMenuButtons;
     [SerializeField] GameObject deckEditorButtons;
-
     [SerializeField] GameObject buttons;
     [SerializeField] GameObject title;
-
-    [SerializeField] GameObject deleteDeck1;
-    [SerializeField] GameObject deleteDeck2;
-    [SerializeField] GameObject deleteDeck3;
-
-    [SerializeField] GameObject[] buttonList1;
-    [SerializeField] GameObject[] buttonList2;
-    [SerializeField] GameObject[] buttonList3;
-    [SerializeField] GameObject[] buttonList4;
     [SerializeField] GameObject[] deleteButtons;
-
     [SerializeField] GameObject[] decknames;
-
     [SerializeField] GameObject areYouSure;
 
     private void Start()
     {
-        float temp = 875 + (0.75f - GameManager.aspectRatio) * 1700f;
-        title.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, temp);
+        float temp = 1f + (GameManager.aspectRatio - 1.334545f) * 0.2f * 1.004405f;
+        buttons.GetComponent<RectTransform>().localScale = new Vector3(temp, temp, temp);
 
-        temp = 650 + (0.75f - GameManager.aspectRatio) * 1200f;
-        buttons.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, temp);
-        
-        float temp1 = 3 + (0.75f - GameManager.aspectRatio) * 2f;
-        float temp2 = 130 + (0.75f - GameManager.aspectRatio) * 70f;
-        float temp3 = 300 + (0.75f - GameManager.aspectRatio) * 140f;
-        foreach (GameObject button in buttonList1)
-        {
-            button.GetComponent<RectTransform>().localScale = new Vector3(temp1, temp1);
-        }
-        foreach (GameObject button in buttonList2)
-        {
-            button.GetComponent<RectTransform>().localScale = new Vector3(temp1, temp1);
-            button.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -temp2);
-        }
-        foreach (GameObject button in buttonList3)
-        {
-            button.GetComponent<RectTransform>().localScale = new Vector3(temp1, temp1);
-            button.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -temp2 * 2);
-        }
-        foreach (GameObject button in buttonList4)
-        {
-            button.GetComponent<RectTransform>().localScale = new Vector3(temp1, temp1);
-            button.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -temp2 * 3);
-        }
+        temp = 300f - (GameManager.aspectRatio - 1.334545f) * 15f * 1.004405f;
         foreach (GameObject button in deleteButtons)
         {
-            button.GetComponent<RectTransform>().anchoredPosition = new Vector2(temp3, button.GetComponent<RectTransform>().anchoredPosition.y);
+            button.GetComponent<RectTransform>().localPosition = new Vector3(temp, button.GetComponent<RectTransform>().localPosition.y , 0);
         }
-        
+
+        temp = 650f + (GameManager.aspectRatio - 1.334545f) * 450f * 1.004405f;
+        Debug.Log(temp);
+        buttons.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, temp, 0);
+
+        temp = 875f + (GameManager.aspectRatio - 1.334545f) * 625f * 1.004405f;
+        Debug.Log(temp);
+        title.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, temp, 0);
+
         if (GameManager.lastMenuPage == 1)
         {
             SetUpDeckEditor();
