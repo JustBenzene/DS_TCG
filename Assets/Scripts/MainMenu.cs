@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject[] buttonList4;
     [SerializeField] GameObject[] deleteButtons;
 
+    [SerializeField] GameObject[] decknames;
+
     [SerializeField] GameObject areYouSure;
 
     private void Start()
@@ -33,8 +36,8 @@ public class MainMenu : MonoBehaviour
         buttons.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, temp);
         
         float temp1 = 3 + (0.75f - GameManager.aspectRatio) * 2f;
-        float temp2 = 130 + (0.75f - GameManager.aspectRatio) * 100f;
-        float temp3 = 300 + (0.75f - GameManager.aspectRatio) * 150f;
+        float temp2 = 130 + (0.75f - GameManager.aspectRatio) * 70f;
+        float temp3 = 300 + (0.75f - GameManager.aspectRatio) * 140f;
         foreach (GameObject button in buttonList1)
         {
             button.GetComponent<RectTransform>().localScale = new Vector3(temp1, temp1);
@@ -123,7 +126,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnClickYes()
     {
-        PlayerPrefs.SetString("Deck" + GameManager.deckNumber.ToString() + "Empty", "True");
+        PlayerPrefs.SetString("Deck" + GameManager.deckNumber.ToString() + "Empty", "y");
 
         SetUpDeckEditor();
 
@@ -141,16 +144,17 @@ public class MainMenu : MonoBehaviour
     {
         mainMenuButtons.SetActive(false);
 
-        GameObject[] list = new GameObject[] { deleteDeck1, deleteDeck2, deleteDeck3 };
         for (int temp = 0; temp <= 2; temp++)
         {
-            if (PlayerPrefs.GetString("Deck" + (temp + 1).ToString() + "Empty") == "False")
+            if (PlayerPrefs.GetString("Deck" + (temp + 1).ToString() + "Empty") == "n")
             {
-                list[temp].GetComponent<Button>().interactable = true;
+                deleteButtons[temp].GetComponent<Button>().interactable = true;
+                decknames[temp].GetComponent<TextMeshProUGUI>().SetText(PlayerPrefs.GetString("Deck" + (temp + 1).ToString() + "Name"));
             }
             else
             {
-                list[temp].GetComponent<Button>().interactable = false;
+                deleteButtons[temp].GetComponent<Button>().interactable = false;
+                decknames[temp].GetComponent<TextMeshProUGUI>().SetText("New Deck");
             }
         }
 

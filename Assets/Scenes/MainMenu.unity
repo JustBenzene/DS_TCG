@@ -966,7 +966,7 @@ RectTransform:
   m_GameObject: {fileID: 429051036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 17.5, y: 17.5, z: 17.5}
+  m_LocalScale: {x: 18.65, y: 18.65, z: 18.65}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1954223444}
@@ -974,7 +974,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -725, y: 870}
+  m_AnchoredPosition: {x: -750, y: 932}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &429051038
@@ -2573,7 +2573,7 @@ GameObject:
   - component: {fileID: 1544532268}
   - component: {fileID: 1544532267}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Name 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3285,7 +3285,7 @@ GameObject:
   - component: {fileID: 1702010339}
   - component: {fileID: 1702010338}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Name 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3420,7 +3420,7 @@ GameObject:
   - component: {fileID: 1723254336}
   - component: {fileID: 1723254335}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Name 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4135,6 +4135,10 @@ MonoBehaviour:
   - {fileID: 1574360452}
   - {fileID: 2119062148}
   - {fileID: 1043187685}
+  decknames:
+  - {fileID: 1544532265}
+  - {fileID: 1702010336}
+  - {fileID: 1723254333}
   areYouSure: {fileID: 2104198477}
 --- !u!1 &2009962441
 GameObject:
