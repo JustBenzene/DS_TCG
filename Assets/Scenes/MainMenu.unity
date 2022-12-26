@@ -4110,27 +4110,6 @@ MonoBehaviour:
   deckEditorButtons: {fileID: 2100982425}
   buttons: {fileID: 1568199854}
   title: {fileID: 393793110}
-  deleteDeck1: {fileID: 1574360452}
-  deleteDeck2: {fileID: 2119062148}
-  deleteDeck3: {fileID: 1043187685}
-  buttonList1:
-  - {fileID: 1597563341}
-  - {fileID: 215376766}
-  - {fileID: 1574360452}
-  - {fileID: 1701544182}
-  buttonList2:
-  - {fileID: 767429545}
-  - {fileID: 207096241}
-  - {fileID: 2119062148}
-  - {fileID: 2009962441}
-  buttonList3:
-  - {fileID: 1843317201}
-  - {fileID: 520740870}
-  - {fileID: 1043187685}
-  - {fileID: 1846131182}
-  buttonList4:
-  - {fileID: 6867795}
-  - {fileID: 974809908}
   deleteButtons:
   - {fileID: 1574360452}
   - {fileID: 2119062148}

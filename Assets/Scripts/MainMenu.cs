@@ -27,11 +27,9 @@ public class MainMenu : MonoBehaviour
         }
 
         temp = 650f + (GameManager.aspectRatio - 1.334545f) * 450f * 1.004405f;
-        Debug.Log(temp);
         buttons.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, temp, 0);
 
         temp = 875f + (GameManager.aspectRatio - 1.334545f) * 625f * 1.004405f;
-        Debug.Log(temp);
         title.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, temp, 0);
 
         if (GameManager.lastMenuPage == 1)
@@ -99,6 +97,7 @@ public class MainMenu : MonoBehaviour
     public void OnClickYes()
     {
         PlayerPrefs.SetString("Deck" + GameManager.deckNumber.ToString() + "Empty", "y");
+        PlayerPrefs.SetString("Deck" + GameManager.deckNumber.ToString() + "Name", "");
 
         SetUpDeckEditor();
 
@@ -112,7 +111,7 @@ public class MainMenu : MonoBehaviour
         deckEditorButtons.SetActive(true);
     }
 
-    public void SetUpDeckEditor()
+    void SetUpDeckEditor()
     {
         mainMenuButtons.SetActive(false);
 
@@ -133,7 +132,7 @@ public class MainMenu : MonoBehaviour
         deckEditorButtons.SetActive(true);
     }
 
-    public void DeleteDeck(int number)
+    void DeleteDeck(int number)
     {
         GameManager.deckNumber = number;
 
@@ -141,7 +140,7 @@ public class MainMenu : MonoBehaviour
         areYouSure.SetActive(true);
     }
 
-    public void OpenDeck(int number)
+    void OpenDeck(int number)
     {
         GameManager.deckNumber = number;
         GameManager.lastMenuPage = 1;
